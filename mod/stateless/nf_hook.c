@@ -15,7 +15,7 @@
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("NIC-ITESM");
-MODULE_DESCRIPTION("Stateless IP/ICMP Translation (RFC 6145)");
+MODULE_DESCRIPTION("Stateless IP/ICMP Translation (RFC 7915)");
 MODULE_VERSION(JOOL_VERSION_STR);
 
 static char *pool6;
@@ -38,12 +38,22 @@ MODULE_PARM_DESC(no_instance, "Prevent an instance from being added to the curre
 
 static NF_CALLBACK(hook_ipv6, skb)
 {
-	return core_6to4(skb, skb->dev);
+	struct xlator jool;
+
+	if (xlator_find(dev_net(skb->dev), &jool))
+		return NF_ACCEPT;
+
+	return jool_xlat6(&jool, skb);
 }
 
 static NF_CALLBACK(hook_ipv4, skb)
 {
-	return core_4to6(skb, skb->dev);
+	struct xlator jool;
+
+	if (xlator_find(dev_net(skb->dev), &jool))
+		return NF_ACCEPT;
+
+	return jool_xlat4(&jool, skb);
 }
 
 static struct nf_hook_ops nfho[] = {

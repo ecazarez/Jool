@@ -46,9 +46,9 @@ verdict handling_hairpinning(struct xlation *old)
 
 	log_debug("Step 5: Handling Hairpinning...");
 
-	xlation_init(&new);
 	new.jool = old->jool;
 	new.in = old->out;
+	bib_session_init(&new.entries);
 
 	result = filtering_and_updating(&new);
 	if (result != VERDICT_CONTINUE)

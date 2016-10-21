@@ -1,0 +1,8 @@
+#CC=cgcc
+
+ccflags-y := -I$(src)/../../../include $(JOOL_FLAGS)
+#ccflags-y += -Wfatal-errors
+
+obj-m += xt_jool_siit.o
+
+xt_jool_siit-objs += xt_hook.o

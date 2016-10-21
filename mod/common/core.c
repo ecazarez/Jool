@@ -11,7 +11,6 @@
 #include "nat64/mod/stateful/fragment_db.h"
 #include "nat64/mod/common/send_packet.h"
 
-
 static verdict core_common(struct xlation *state)
 {
 	verdict result;
@@ -61,69 +60,70 @@ end:
 	return result;
 }
 
-unsigned int core_4to6(struct sk_buff *skb, const struct net_device *dev)
+unsigned int jool_xlat6(const struct xlator *jool, struct sk_buff *skb)
 {
 	struct xlation state;
-	struct iphdr *hdr = ip_hdr(skb);
+	struct ipv6hdr *hdr;
 	verdict result;
 
-	xlation_init(&state);
-
-	if (xlator_find(dev_net(dev), &state.jool))
+	if (!jool->global->cfg.enabled)
 		return NF_ACCEPT;
-	if (!state.jool.global->cfg.enabled) {
-		xlation_put(&state);
-		return NF_ACCEPT;
-	}
 
-	log_debug("===============================================");
-	log_debug("Catching IPv4 packet: %pI4->%pI4", &hdr->saddr, &hdr->daddr);
-
-	/* Reminder: This function might change pointers. */
-	if (pkt_init_ipv4(&state.in, skb) != 0) {
-		xlation_put(&state);
-		return NF_DROP;
-	}
-
-	result = core_common(&state);
-	xlation_put(&state);
-	return result;
-}
-
-unsigned int core_6to4(struct sk_buff *skb, const struct net_device *dev)
-{
-	struct xlation state;
-	struct ipv6hdr *hdr = ipv6_hdr(skb);
-	verdict result;
-
-	xlation_init(&state);
-
-	if (xlator_find(dev_net(dev), &state.jool))
-		return NF_ACCEPT;
-	if (!state.jool.global->cfg.enabled) {
-		xlation_put(&state);
-		return NF_ACCEPT;
-	}
-
+	hdr = ipv6_hdr(skb);
 	log_debug("===============================================");
 	log_debug("Catching IPv6 packet: %pI6c->%pI6c", &hdr->saddr,
 			&hdr->daddr);
 
+	/*
+	 * TODO optimize this copy away? be aware that turning state.jool into
+	 * a pointer will result in like a bazillion dereferences.
+	 */
 	/* Reminder: This function might change pointers. */
-	if (pkt_init_ipv6(&state.in, skb) != 0) {
-		xlation_put(&state);
+	if (pkt_init_ipv6(&state.in, skb) != 0)
 		return NF_DROP;
-	}
+	state.jool = *jool;
+	bib_session_init(&state.entries);
 
 	if (xlat_is_nat64()) {
 		result = fragdb_handle(state.jool.nat64.frag, &state.in);
 		if (result != VERDICT_CONTINUE)
-			goto end;
+			return result;
 	}
 
-	result = core_common(&state);
-	/* Fall through. */
-end:
-	xlation_put(&state);
-	return result;
+	return core_common(&state);
 }
+EXPORT_SYMBOL(jool_xlat6);
+
+unsigned int jool_xlat4(const struct xlator *jool, struct sk_buff *skb)
+{
+	struct xlation state;
+	struct iphdr *hdr;
+
+	if (!jool->global->cfg.enabled)
+		return NF_ACCEPT;
+
+	hdr = ip_hdr(skb);
+	log_debug("===============================================");
+	log_debug("Catching IPv4 packet: %pI4->%pI4", &hdr->saddr, &hdr->daddr);
+
+	/* Reminder: This function might change pointers. */
+	if (pkt_init_ipv4(&state.in, skb) != 0)
+		return NF_DROP;
+	state.jool = *jool;
+	bib_session_init(&state.entries);
+
+	return core_common(&state);
+}
+EXPORT_SYMBOL(jool_xlat4);
+
+int jool_xlator_find_current(struct xlator *result)
+{
+	return xlator_find_current(result);
+}
+EXPORT_SYMBOL(jool_xlator_find_current);
+
+void jool_xlator_put(struct xlator *jool)
+{
+	xlator_put(jool);
+}
+EXPORT_SYMBOL(jool_xlator_put);

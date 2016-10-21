@@ -23,8 +23,7 @@ struct jool_instance {
 
 	/*
 	 * I want to turn this into a hash table, but it doesn't seem like
-	 * @jool.ns holds anything that reminisces an identifier...
-	 * Perhaps the ns pointer value could be used, but I'm not sure.
+	 * @ns holds anything reminiscent of an identifier...
 	 */
 	struct list_head list_hook;
 };
@@ -452,6 +451,12 @@ void xlator_put(struct xlator *jool)
 
 	cfgcandidate_put(jool->newcfg);
 }
+
+void jool_xlator_put(struct xlator *jool)
+{
+	xlator_put(jool);
+}
+EXPORT_SYMBOL(jool_xlator_put);
 
 int xlator_foreach(xlator_foreach_cb cb, void *args)
 {

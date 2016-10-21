@@ -66,12 +66,22 @@ static char *banner = "\n"
 
 static NF_CALLBACK(hook_ipv6, skb)
 {
-	return core_6to4(skb, skb->dev);
+	struct xlator jool;
+
+	if (xlator_find(dev_net(skb->dev), &jool))
+		return NF_ACCEPT;
+
+	return jool_xlat6(&jool, skb);
 }
 
 static NF_CALLBACK(hook_ipv4, skb)
 {
-	return core_4to6(skb, skb->dev);
+	struct xlator jool;
+
+	if (xlator_find(dev_net(skb->dev), &jool))
+		return NF_ACCEPT;
+
+	return jool_xlat4(&jool, skb);
 }
 
 static struct nf_hook_ops nfho[] = {
