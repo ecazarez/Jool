@@ -1,4 +1,4 @@
-#include "nat64/common/config.h"
+#include "nl-core.h"
 #ifdef __KERNEL__
 #include <linux/kernel.h>
 #else

@@ -1,7 +1,7 @@
 #include <errno.h>
 #include <pthread.h>
 #include <stdio.h>
-#include "nat64/common/types.h"
+#include "types.h"
 #include "nat64/usr/joold/modsocket.h"
 #include "nat64/usr/joold/netsocket.h"
 

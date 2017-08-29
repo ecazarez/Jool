@@ -1,4 +1,4 @@
-#include "nat64/common/xlat.h"
+#include "xlat.h"
 
 bool xlat_is_siit(void)
 {
@@ -7,5 +7,5 @@ bool xlat_is_siit(void)
 
 const char *xlat_get_name(void)
 {
-	return "SIIT Jool";
+	return "Jool";
 }

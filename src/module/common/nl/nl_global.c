@@ -1,17 +1,18 @@
-#include "nat64/mod/common/nl/global.h"
+#include "nl_global.h"
 
 #include <linux/sort.h>
-#include "nat64/common/constants.h"
-#include "nat64/common/types.h"
-#include "nat64/mod/common/config.h"
-#include "nat64/mod/common/pool6.h"
-#include "nat64/mod/common/nl/nl_common.h"
-#include "nat64/mod/common/nl/nl_core2.h"
-#include "nat64/mod/stateful/fragment_db.h"
-#include "nat64/mod/stateful/joold.h"
-#include "nat64/mod/stateful/bib/db.h"
-#include "nat64/mod/stateless/eam.h"
-#include "nat64/usr/global.h"
+#include "constants.h"
+#include "types.h"
+#include "config.h"
+#include "pool6.h"
+#include "nl_common.h"
+#include "nl_core.h"
+#include "nat64/fragment_db.h"
+#include "nat64/joold.h"
+#include "nat64/bib/db.h"
+#include "siit/eam.h"
+/* TODO place relevant stuff in global common? */
+#include "../userspace/common/target/global.h"
 
 
 static int ensure_siit(char *field)

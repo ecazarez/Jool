@@ -1,8 +1,8 @@
-#include "nat64/mod/common/nl/session.h"
+#include "nl_session.h"
 
-#include "nat64/mod/common/nl/nl_common.h"
-#include "nat64/mod/common/nl/nl_core2.h"
-#include "nat64/mod/stateful/bib/db.h"
+#include "nl_common.h"
+#include "nl_core.h"
+#include "nat64/bib/db.h"
 
 static int session_entry_to_userspace(struct session_entry *entry, void *arg)
 {

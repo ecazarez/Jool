@@ -1,11 +1,11 @@
-#include "nat64/mod/stateful/joold.h"
+#include "nat64/joold.h"
 
-#include "nat64/common/constants.h"
-#include "nat64/common/str_utils.h"
-#include "nat64/mod/common/wkmalloc.h"
-#include "nat64/mod/common/xlator.h"
-#include "nat64/mod/common/nl/nl_core2.h"
-#include "nat64/mod/stateful/bib/db.h"
+#include "constants.h"
+#include "str_utils.h"
+#include "wkmalloc.h"
+#include "xlator.h"
+#include "nl/nl_core.h"
+#include "nat64/bib/db.h"
 
 #include <linux/inet.h>
 

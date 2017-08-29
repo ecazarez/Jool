@@ -1,6 +1,6 @@
 #include "nat64/usr/instance.h"
 
-#include "nat64/common/config.h"
+#include "config.h"
 #include "nat64/usr/netlink.h"
 
 #define HDR_LEN sizeof(struct request_hdr)

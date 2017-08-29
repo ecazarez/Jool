@@ -3,10 +3,10 @@
 #include <errno.h>
 #include <time.h>
 #include <sys/socket.h>
-#include "nat64/common/config.h"
-#include "nat64/common/session.h"
+#include "config.h"
+#include "session.h"
 #include "nat64/usr/str_utils.h"
-#include "nat64/common/types.h"
+#include "types.h"
 #include "nat64/usr/netlink.h"
 #include "nat64/usr/dns.h"
 

@@ -1,0 +1,80 @@
+#CC=cgcc
+
+ccflags-y += -I$(src)/../common
+ccflags-y += -I$(src)/common
+ccflags-y += -I$(src)
+ccflags-y += $(JOOL_FLAGS)
+ccflags-y += -Wfatal-errors
+
+obj-m += jool.o
+
+jool-objs += common/xlat.o
+jool-objs += common/config.o
+
+jool-objs += common/rfc6145/4to6.o
+jool-objs += common/rfc6145/6to4.o
+jool-objs += common/rfc6145/common.o
+jool-objs += common/rfc6145/core.o
+
+jool-objs += common/address.o
+jool-objs += common/atomic_config.o
+jool-objs += common/module-types.o
+jool-objs += common/str_utils.o
+jool-objs += common/packet.o
+jool-objs += common/stats.o
+jool-objs += common/handling_hairpinning.o
+jool-objs += common/log_time.o
+jool-objs += common/icmp_wrapper.o
+jool-objs += common/rtrie.o
+jool-objs += common/ipv6_hdr_iterator.o
+jool-objs += common/pool6.o
+jool-objs += common/rfc6052.o
+jool-objs += common/translation_state.o
+jool-objs += common/rbtree.o
+jool-objs += common/config.o
+jool-objs += common/route_in.o
+jool-objs += common/route_out.o
+jool-objs += common/send_packet.o
+jool-objs += common/core.o
+jool-objs += common/error_pool.o
+jool-objs += common/wkmalloc.o
+jool-objs += common/xlator.o
+
+jool-objs += common/nl/nl_atomic_config.o
+jool-objs += common/nl/nl_handler.o
+jool-objs += common/nl/nl_core.o
+jool-objs += common/nl/nl_bib.o
+jool-objs += common/nl/nl_pool.o
+jool-objs += common/nl/nl_eam.o
+jool-objs += common/nl/nl_global.o
+jool-objs += common/nl/nl_instance.o
+jool-objs += common/nl/nl_joold.o
+jool-objs += common/nl/nl_logtime.o
+jool-objs += common/nl/nl_common.o
+jool-objs += common/nl/nl_pool4.o
+jool-objs += common/nl/nl_pool6.o
+jool-objs += common/nl/nl_session.o
+
+jool-objs += siit/eam.o
+jool-objs += siit/pool.o
+jool-objs += siit/blacklist4.o
+jool-objs += siit/rfc6791.o
+jool-objs += siit/rfc6791v6.o
+
+jool-objs += nat64/pool4/empty.o
+jool-objs += nat64/pool4/db.o
+jool-objs += nat64/pool4/rfc6056.o
+
+jool-objs += nat64/bib/db.o
+jool-objs += nat64/bib/entry.o
+jool-objs += nat64/bib/pkt_queue.o
+
+jool-objs += nat64/timer.o
+jool-objs += nat64/fragment_db.o
+jool-objs += nat64/determine_incoming_tuple.o
+jool-objs += nat64/filtering_and_updating.o
+jool-objs += nat64/compute_outgoing_tuple.o
+jool-objs += nat64/joold.o
+
+jool-objs += initialization.o
+

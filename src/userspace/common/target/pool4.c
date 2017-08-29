@@ -1,8 +1,8 @@
 #include "nat64/usr/pool4.h"
 
 #include <errno.h>
-#include "nat64/common/str_utils.h"
-#include "nat64/common/types.h"
+#include "str_utils.h"
+#include "types.h"
 #include "nat64/usr/netlink.h"
 
 

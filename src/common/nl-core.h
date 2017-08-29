@@ -7,8 +7,8 @@
  * which they use to communicate with each other.
  */
 
-#include "nat64/common/types.h"
-#include "nat64/common/xlat.h"
+#include "types.h"
+#include "xlat.h"
 /* TODO (usr) really necessary? */
 #ifdef BENCHMARK
 	#ifdef __KERNEL__

@@ -3,8 +3,8 @@
 #include <netlink/genl/genl.h>
 #include <netlink/genl/ctrl.h>
 #include <errno.h>
-#include "nat64/common/config.h"
-#include "nat64/common/types.h"
+#include "config.h"
+#include "types.h"
 
 struct response_cb {
 	jool_response_cb cb;

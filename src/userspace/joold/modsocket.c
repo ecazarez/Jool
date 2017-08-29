@@ -5,8 +5,8 @@
 #include <netlink/genl/ctrl.h>
 #include <netlink/genl/genl.h>
 #include <sys/types.h>
-#include "nat64/common/config.h"
-#include "nat64/common/types.h"
+#include "config.h"
+#include "types.h"
 #include "nat64/usr/netlink.h"
 #include "nat64/usr/joold/netsocket.h"
 

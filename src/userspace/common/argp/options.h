@@ -2,7 +2,7 @@
 #define _JOOL_USR_ARGP_OPTIONS_H
 
 #include <argp.h>
-#include "nat64/common/config.h"
+#include "config.h"
 
 #define BOOL_FORMAT "BOOL"
 #define NUM_FORMAT "NUM"

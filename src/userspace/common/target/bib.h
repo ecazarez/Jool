@@ -1,7 +1,7 @@
 #ifndef _JOOL_USR_BIB_H
 #define _JOOL_USR_BIB_H
 
-#include "nat64/common/types.h"
+#include "types.h"
 
 
 int bib_display(bool use_tcp, bool use_udp, bool use_icmp, bool numeric_hostname, bool csv_format);

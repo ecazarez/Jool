@@ -4,9 +4,9 @@
 
 #include <errno.h>
 #include <time.h>
-#include "nat64/common/config.h"
-#include "nat64/common/str_utils.h"
-#include "nat64/common/types.h"
+#include "config.h"
+#include "str_utils.h"
+#include "types.h"
 #include "nat64/usr/netlink.h"
 
 #define HDR_LEN sizeof(struct request_hdr)

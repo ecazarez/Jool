@@ -3,9 +3,9 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
-#include "nat64/common/config.h"
-#include "nat64/common/constants.h"
-#include "nat64/common/types.h"
+#include "config.h"
+#include "constants.h"
+#include "types.h"
 #include "nat64/usr/cJSON.h"
 #include "nat64/usr/file.h"
 #include "nat64/usr/global.h"

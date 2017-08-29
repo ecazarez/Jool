@@ -1,7 +1,7 @@
 #include "nat64/usr/global.h"
 
 #include <errno.h>
-#include "nat64/common/types.h"
+#include "types.h"
 #include "nat64/usr/str_utils.h"
 #include "nat64/usr/netlink.h"
 

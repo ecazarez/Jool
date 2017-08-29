@@ -1,10 +1,10 @@
-#include "nat64/mod/common/route.h"
+#include "route.h"
 
 #include <linux/version.h>
 #include <net/flow.h>
 #include <net/ip6_route.h>
 #include <net/route.h>
-#include "nat64/mod/common/ipv6_hdr_iterator.h"
+#include "ipv6_hdr_iterator.h"
 
 /**
  * Callers of this function need to mind hairpinning. What happens if @daddr

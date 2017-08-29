@@ -1,7 +1,7 @@
 #ifndef _JOOL_USR_GLOBAL_H
 #define _JOOL_USR_GLOBAL_H
 
-#include "nat64/common/config.h"
+#include "config.h"
 
 /* Normal flags */
 #define OPTNAME_ENABLE			"enable"

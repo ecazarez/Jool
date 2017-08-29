@@ -1,15 +1,15 @@
-#include "nat64/mod/common/core.h"
+#include "core.h"
 
-#include "nat64/mod/common/config.h"
-#include "nat64/mod/common/handling_hairpinning.h"
-#include "nat64/mod/common/xlator.h"
-#include "nat64/mod/common/translation_state.h"
-#include "nat64/mod/common/rfc6145/core.h"
-#include "nat64/mod/stateful/compute_outgoing_tuple.h"
-#include "nat64/mod/stateful/determine_incoming_tuple.h"
-#include "nat64/mod/stateful/filtering_and_updating.h"
-#include "nat64/mod/stateful/fragment_db.h"
-#include "nat64/mod/common/send_packet.h"
+#include "config.h"
+#include "handling_hairpinning.h"
+#include "xlator.h"
+#include "translation_state.h"
+#include "rfc6145/core.h"
+#include "nat64/compute_outgoing_tuple.h"
+#include "nat64/determine_incoming_tuple.h"
+#include "nat64/filtering_and_updating.h"
+#include "nat64/fragment_db.h"
+#include "send_packet.h"
 
 #include <net/netfilter/ipv4/nf_defrag_ipv4.h>
 #include <net/netfilter/ipv6/nf_defrag_ipv6.h>

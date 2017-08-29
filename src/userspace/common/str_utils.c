@@ -6,8 +6,8 @@
 #include <stdio.h>
 #include <arpa/inet.h>
 #include <regex.h>
-#include "nat64/common/constants.h"
-#include "nat64/common/types.h"
+#include "constants.h"
+#include "types.h"
 
 
 #define MAX_PORT 0xFFFF

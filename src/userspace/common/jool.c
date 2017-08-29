@@ -11,10 +11,10 @@
 #include <linux/types.h>
 #include <string.h>
 
-#include "nat64/common/config.h"
-#include "nat64/common/constants.h"
-#include "nat64/common/types.h"
-#include "nat64/common/xlat.h"
+#include "config.h"
+#include "constants.h"
+#include "types.h"
+#include "xlat.h"
 #include "nat64/usr/str_utils.h"
 #include "nat64/usr/instance.h"
 #include "nat64/usr/file.h"

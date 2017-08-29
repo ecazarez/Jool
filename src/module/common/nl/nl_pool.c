@@ -1,9 +1,9 @@
-#include "nat64/mod/common/nl/pool.h"
+#include "nl_pool.h"
 
-#include "nat64/common/types.h"
-#include "nat64/mod/common/nl/nl_common.h"
-#include "nat64/mod/common/nl/nl_core2.h"
-#include "nat64/mod/stateless/pool.h"
+#include "types.h"
+#include "nl_common.h"
+#include "nl_core.h"
+#include "siit/pool.h"
 
 static int pool_to_usr(struct ipv4_prefix *prefix, void *arg)
 {

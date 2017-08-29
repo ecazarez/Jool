@@ -1,15 +1,15 @@
-#include "nat64/mod/stateful/filtering_and_updating.h"
+#include "nat64/filtering_and_updating.h"
 
-#include "nat64/common/str_utils.h"
-#include "nat64/mod/common/config.h"
-#include "nat64/mod/common/icmp_wrapper.h"
-#include "nat64/mod/common/pool6.h"
-#include "nat64/mod/common/rfc6052.h"
-#include "nat64/mod/common/stats.h"
-#include "nat64/mod/common/rfc6145/6to4.h"
-#include "nat64/mod/stateful/joold.h"
-#include "nat64/mod/stateful/pool4/db.h"
-#include "nat64/mod/stateful/bib/db.h"
+#include "str_utils.h"
+#include "config.h"
+#include "icmp_wrapper.h"
+#include "pool6.h"
+#include "rfc6052.h"
+#include "stats.h"
+#include "rfc6145/6to4.h"
+#include "nat64/joold.h"
+#include "nat64/pool4/db.h"
+#include "nat64/bib/db.h"
 
 #include <linux/skbuff.h>
 #include <linux/ip.h>

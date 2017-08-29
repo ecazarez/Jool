@@ -1,7 +1,7 @@
 #ifndef _JOOL_USR_POOL6_H
 #define _JOOL_USR_POOL6_H
 
-#include "nat64/common/types.h"
+#include "types.h"
 
 
 int pool6_display(bool csv);

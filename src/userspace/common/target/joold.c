@@ -1,7 +1,7 @@
 #include "nat64/usr/joold.h"
 
 #include <stddef.h>
-#include "nat64/common/config.h"
+#include "config.h"
 #include "nat64/usr/netlink.h"
 
 int joold_advertise(void)

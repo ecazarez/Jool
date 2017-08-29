@@ -1,11 +1,11 @@
-#include "nat64/mod/common/rfc6145/common.h"
-#include "nat64/mod/common/config.h"
-#include "nat64/mod/common/ipv6_hdr_iterator.h"
-#include "nat64/mod/common/packet.h"
-#include "nat64/mod/common/stats.h"
-#include "nat64/mod/common/rfc6145/4to6.h"
-#include "nat64/mod/common/rfc6145/6to4.h"
-#include "nat64/mod/stateless/blacklist4.h"
+#include "rfc6145/common.h"
+#include "config.h"
+#include "ipv6_hdr_iterator.h"
+#include "packet.h"
+#include "stats.h"
+#include "rfc6145/4to6.h"
+#include "rfc6145/6to4.h"
+#include "siit/blacklist4.h"
 #include <linux/icmp.h>
 
 struct backup_skb {

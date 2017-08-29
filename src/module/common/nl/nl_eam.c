@@ -1,9 +1,9 @@
-#include "nat64/mod/common/nl/eam.h"
+#include "nl_eam.h"
 
-#include "nat64/common/types.h"
-#include "nat64/mod/common/nl/nl_common.h"
-#include "nat64/mod/common/nl/nl_core2.h"
-#include "nat64/mod/stateless/eam.h"
+#include "types.h"
+#include "nl_common.h"
+#include "nl_core.h"
+#include "siit/eam.h"
 
 static int eam_entry_to_userspace(struct eamt_entry *entry, void *arg)
 {

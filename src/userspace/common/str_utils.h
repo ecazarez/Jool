@@ -9,7 +9,7 @@
  * parser of the userspace app's arguments.
  */
 
-#include "nat64/common/str_utils.h"
+#include "str_utils.h"
 
 /** Maximum storable value on a __u8. */
 #define MAX_U8 0xFFU

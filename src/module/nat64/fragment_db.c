@@ -1,9 +1,9 @@
-#include "nat64/mod/stateful/fragment_db.h"
-#include "nat64/common/constants.h"
-#include "nat64/mod/common/config.h"
-#include "nat64/mod/common/linux_version.h"
-#include "nat64/mod/common/stats.h"
-#include "nat64/mod/common/packet.h"
+#include "nat64/fragment_db.h"
+#include "constants.h"
+#include "config.h"
+#include "linux_version.h"
+#include "stats.h"
+#include "packet.h"
 
 #include <linux/version.h>
 #include <linux/ip.h>

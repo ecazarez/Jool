@@ -1,9 +1,9 @@
 #include "nat64/usr/bib.h"
 
 #include <errno.h>
-#include "nat64/common/config.h"
-#include "nat64/common/str_utils.h"
-#include "nat64/common/types.h"
+#include "config.h"
+#include "str_utils.h"
+#include "types.h"
 #include "nat64/usr/netlink.h"
 #include "nat64/usr/dns.h"
 

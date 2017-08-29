@@ -1,7 +1,7 @@
 #ifndef _JOOL_USR_POOL_H
 #define _JOOL_USR_POOL_H
 
-#include "nat64/common/config.h"
+#include "config.h"
 
 
 int pool_display(enum config_mode mode, bool csv);

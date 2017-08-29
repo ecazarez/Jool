@@ -8,7 +8,7 @@
  * Recognizes a packet that should return from the same interface and handles it accordingly.
  */
 
-#include "nat64/mod/common/translation_state.h"
+#include "translation_state.h"
 
 bool is_hairpin(struct xlation *state);
 verdict handling_hairpinning(struct xlation *state);

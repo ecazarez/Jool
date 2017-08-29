@@ -1,12 +1,12 @@
-#include "nat64/mod/common/send_packet.h"
+#include "send_packet.h"
 
 #include <linux/version.h>
 
-#include "nat64/mod/common/linux_version.h"
-#include "nat64/mod/common/icmp_wrapper.h"
-#include "nat64/mod/common/packet.h"
-#include "nat64/mod/common/route.h"
-#include "nat64/mod/common/log_time.h"
+#include "linux_version.h"
+#include "icmp_wrapper.h"
+#include "packet.h"
+#include "route.h"
+#include "log_time.h"
 
 static unsigned int get_nexthop_mtu(struct packet *pkt)
 {

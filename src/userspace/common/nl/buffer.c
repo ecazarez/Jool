@@ -3,8 +3,8 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
-#include "nat64/common/config.h"
-#include "nat64/common/types.h"
+#include "config.h"
+#include "types.h"
 #include "nat64/usr/netlink.h"
 
 #define BUFFER_MAX 256
