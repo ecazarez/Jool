@@ -1,0 +1,10 @@
+[Unit]
+Description=Jool SIIT Configure Service
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/modprobe jool_siit pool6=2001:db8::/96
+
+[Install]
+WantedBy=multi-user.target

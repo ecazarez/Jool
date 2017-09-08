@@ -1,0 +1,10 @@
+[Unit]
+Description=Jool NAT64 Service
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/modprobe jool pool6=64:ff9b::/96
+
+[Install]
+WantedBy=multi-user.target
