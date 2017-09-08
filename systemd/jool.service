@@ -1,5 +1,5 @@
 [Unit]
-Description=Jool NAT64 Service
+Description=Jool NAT64 Configuration Service
 After=network.target
 
 [Service]

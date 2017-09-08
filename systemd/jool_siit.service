@@ -1,5 +1,5 @@
 [Unit]
-Description=Jool SIIT Configure Service
+Description=Jool SIIT Configuration Service
 After=network.target
 
 [Service]
