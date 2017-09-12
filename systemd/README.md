@@ -15,30 +15,35 @@ I recommend to create a service for each Jool mode (NAT64 and SIIT)
 		
 		[Service]
 		Type=oneshot
-		ExecStart=/sbin/modprobe jool pool6=64:ff9b::/96
-		
+		ExecStartPre=/sbin/modprobe jool
+		ExecStart=/usr/local/bin/jool --file /etc/jool.conf
+
 		[Install]
 		WantedBy=multi-user.target
 		
-2. Edit the `ExecStart` line from `Service` section in .service file according to your Jool configuration. 
-	
-	2.1 Single command 
-	
-		ExecStart=/sbin/modprobe jool pool6=64:ff9b::/96
+2. Edit the `Service` section in .service file according to your Jool configuration. You can configure just one command/script to run at start (ExecStart) or a list of pre-start commands (ExecStartPre). 
 
-	2.2 Bash script
+	Single command
 	
-		ExecStart=/usr/local/etc/jool-start.sh 
-		
-	where jool-start.sh content could be:
+		[Service]
+		Type=oneshot
+		ExecStart=/sbin/modprobe jool pool6=64:ff9b::/96 
+				
+				
+	Multiple commands
 	
-		#!/bin/bash
-		sudo /sbin/modprobe jool pool6=64:ff9b::/96
-		ip l set eth0 up
-		ip a flush dev eth0 scope global
-		ip a add 2001:db8::1/96
-		... 
+		[Service]
+		Type=oneshot
+		ExecStartPre=/sbin/modprobe jool
+		ExecStart=/usr/local/bin/jool --file /etc/jool.conf
 		
+	where jool.conf is a json file including atomic configuration:
+	
+		{
+			"pool6": "64:ff9b::/96"
+		}
+	
+If you want to use the atomic configuration, you can use the example files jool.conf and jool_siit.conf and edit the file path in the ExecStart command.
 	
 3. Reload the systemd daemon  
 

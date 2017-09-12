@@ -4,7 +4,8 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/sbin/modprobe jool_siit pool6=2001:db8::/96
+ExecStartPre=/sbin/modprobe jool_siit
+ExecStart=/usr/local/bin/jool_siit --file /etc/jool_siit.conf
 
 [Install]
 WantedBy=multi-user.target
