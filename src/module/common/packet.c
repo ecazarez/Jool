@@ -231,7 +231,8 @@ static int validate_inner6(struct sk_buff *skb, struct pkt_metadata *outer_meta)
 	return 0;
 }
 
-static int handle_icmp6(struct sk_buff *skb, struct pkt_metadata *meta)
+static int handle_icmp6(struct sk_buff *skb, struct pkt_metadata *meta,
+		xlator_type type)
 {
 	union {
 		struct icmp6hdr icmp;
@@ -253,7 +254,7 @@ static int handle_icmp6(struct sk_buff *skb, struct pkt_metadata *meta)
 			return error;
 	}
 
-	if (xlat_is_siit() && meta->has_frag_hdr && is_icmp6_info(ptr.icmp->icmp6_type)) {
+	if (type == XLATOR_SIIT && meta->has_frag_hdr && is_icmp6_info(ptr.icmp->icmp6_type)) {
 		ptr.frag = skb_hdr_ptr(skb, meta->frag_offset, buffer.frag);
 		if (!ptr.frag)
 			return truncated6(skb, "fragment header");
@@ -270,7 +271,7 @@ static int handle_icmp6(struct sk_buff *skb, struct pkt_metadata *meta)
  * As a contract, pkt_destroy() doesn't need to be called if this fails.
  * (Just like other init functions.)
  */
-int pkt_init_ipv6(struct packet *pkt, struct sk_buff *skb)
+int pkt_init_ipv6(struct packet *pkt, struct sk_buff *skb, xlator_type type)
 {
 	struct pkt_metadata meta;
 	int error;
@@ -297,7 +298,7 @@ int pkt_init_ipv6(struct packet *pkt, struct sk_buff *skb)
 
 	if (meta.l4_proto == L4PROTO_ICMP) {
 		/* Do not move this to summarize_skb6(), because it risks infinite recursion. */
-		error = handle_icmp6(skb, &meta);
+		error = handle_icmp6(skb, &meta, type);
 		if (error)
 			return error;
 	}
@@ -372,7 +373,8 @@ static int validate_inner4(struct sk_buff *skb, struct pkt_metadata *meta)
 	return 0;
 }
 
-static int handle_icmp4(struct sk_buff *skb, struct pkt_metadata *meta)
+static int handle_icmp4(struct sk_buff *skb, struct pkt_metadata *meta,
+		xlator_type type)
 {
 	struct icmphdr buffer, *ptr;
 	int error;
@@ -387,7 +389,7 @@ static int handle_icmp4(struct sk_buff *skb, struct pkt_metadata *meta)
 			return error;
 	}
 
-	if (xlat_is_siit() && is_icmp4_info(ptr->type) && is_fragmented_ipv4(ip_hdr(skb))) {
+	if (type == XLATOR_SIIT && is_icmp4_info(ptr->type) && is_fragmented_ipv4(ip_hdr(skb))) {
 		log_debug("Packet is a fragmented ping; its checksum cannot be translated.");
 		return -EINVAL;
 	}
@@ -395,7 +397,8 @@ static int handle_icmp4(struct sk_buff *skb, struct pkt_metadata *meta)
 	return 0;
 }
 
-static int summarize_skb4(struct sk_buff *skb, struct pkt_metadata *meta)
+static int summarize_skb4(struct sk_buff *skb, struct pkt_metadata *meta,
+		xlator_type type)
 {
 	struct iphdr *hdr4 = ip_hdr(skb);
 	unsigned int offset = skb_network_offset(skb) + (hdr4->ihl << 2);
@@ -426,7 +429,7 @@ static int summarize_skb4(struct sk_buff *skb, struct pkt_metadata *meta)
 		meta->l4_proto = L4PROTO_ICMP;
 		if (is_first_frag4(hdr4))
 			meta->payload_offset += sizeof(struct icmphdr);
-		return handle_icmp4(skb, meta);
+		return handle_icmp4(skb, meta, type);
 	}
 
 	meta->l4_proto = L4PROTO_OTHER;
@@ -437,7 +440,7 @@ static int summarize_skb4(struct sk_buff *skb, struct pkt_metadata *meta)
  * As a contract, pkt_destroy() doesn't need to be called if this fails.
  * (Just like other init functions.)
  */
-int pkt_init_ipv4(struct packet *pkt, struct sk_buff *skb)
+int pkt_init_ipv4(struct packet *pkt, struct sk_buff *skb, xlator_type type)
 {
 	struct pkt_metadata meta;
 	int error;
@@ -455,7 +458,7 @@ int pkt_init_ipv4(struct packet *pkt, struct sk_buff *skb)
 	if (error)
 		return error;
 
-	error = summarize_skb4(skb, &meta);
+	error = summarize_skb4(skb, &meta, type);
 	if (error)
 		return error;
 

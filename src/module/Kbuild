@@ -8,6 +8,8 @@ ccflags-y += -Wfatal-errors
 
 obj-m += jool.o
 
+jool-objs += ../common/nl-core.o
+
 jool-objs += common/xlat.o
 jool-objs += common/config.o
 
